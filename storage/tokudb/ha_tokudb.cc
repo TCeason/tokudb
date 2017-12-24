@@ -6408,6 +6408,7 @@ int ha_tokudb::create_txn(THD* thd, tokudb_trx_data* trx) {
          (thd_sql_command(thd) != SQLCOM_DROP_TABLE) &&
          (thd_sql_command(thd) != SQLCOM_DROP_INDEX) &&
          (thd_sql_command(thd) != SQLCOM_CREATE_INDEX) &&
+         (thd_sql_command(thd) != SQLCOM_END) &&
          (thd_sql_command(thd) != SQLCOM_ALTER_TABLE)) {
         /* QQQ We have to start a master transaction */
         // DBUG_PRINT("trans", ("starting transaction all "));
@@ -6464,8 +6465,8 @@ int ha_tokudb::create_txn(THD* thd, tokudb_trx_data* trx) {
     TOKUDB_HANDLER_TRACE_FOR_FLAGS(
         TOKUDB_DEBUG_TXN,
         "created stmt %p sp_level %p",
-        trx->sp_level,
-        trx->stmt);
+        trx->stmt,
+        trx->sp_level);
     reset_stmt_progress(&trx->stmt_progress);
     trans_register_ha(thd, false, tokudb_hton, NULL);
 cleanup:
