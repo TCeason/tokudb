@@ -752,7 +752,6 @@ int tokudb_end(TOKUDB_UNUSED(handlerton* hton),
         tokudb_primary_key_bytes_inserted = NULL;
     }
 
-<<<<<<< HEAD
     if (toku_row_status.inserted)
         destroy_partitioned_counter(toku_row_status.inserted);
     if (toku_row_status.deleted)
@@ -762,10 +761,7 @@ int tokudb_end(TOKUDB_UNUSED(handlerton* hton),
     if (toku_row_status.read)
         destroy_partitioned_counter(toku_row_status.read);
 
-#if TOKU_THDVAR_MEMALLOC_BUG
-=======
 #if defined(TOKU_THDVAR_MEMALLOC_BUG) && TOKU_THDVAR_MEMALLOC_BUG
->>>>>>> Percona-Server-5.7.23-24
     delete_tree(&tokudb_map);
 #endif  // defined(TOKU_THDVAR_MEMALLOC_BUG) && TOKU_THDVAR_MEMALLOC_BUG
 
@@ -1303,7 +1299,6 @@ static bool tokudb_show_engine_status(THD * thd, stat_print_fn * stat_print) {
     const int bufsiz = 1024;
     char buf[bufsiz];
 
-<<<<<<< HEAD
     double time_elapsed;
     time_t current_time;
 
@@ -1320,8 +1315,6 @@ static bool tokudb_show_engine_status(THD * thd, stat_print_fn * stat_print) {
         STATPRINT("Version", buf);
     }
 #endif
-=======
->>>>>>> Percona-Server-5.7.23-24
     error = db_env->get_engine_status_num_rows (db_env, &max_rows);
     TOKU_ENGINE_STATUS_ROW_S mystat[max_rows];
     error = db_env->get_engine_status(
