@@ -69,12 +69,9 @@ IF(UNIX)
     # GCC 6 has C++14 as default, set it explicitly to the old default.
     EXECUTE_PROCESS(COMMAND ${CMAKE_CXX_COMPILER} -dumpversion
                     OUTPUT_VARIABLE GXX_VERSION)
-<<<<<<< HEAD
     IF(GXX_VERSION VERSION_EQUAL 6.0 OR GXX_VERSION VERSION_GREATER 6.0)
       SET(COMMON_CXX_FLAGS             "${COMMON_CXX_FLAGS} -std=gnu++03 -std=gnu++11")
     ENDIF()
-=======
->>>>>>> Percona-Server-5.7.23-24
     # Disable inline optimizations for valgrind testing to avoid false positives
     IF(WITH_VALGRIND)
       SET(COMMON_CXX_FLAGS             "-fno-inline ${COMMON_CXX_FLAGS}")
