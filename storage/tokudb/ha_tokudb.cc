@@ -27,14 +27,10 @@ Copyright (c) 2006, 2015, Percona and/or its affiliates. All rights reserved.
 #include "tokudb_buffer.h"
 #include "tokudb_status.h"
 #include "ha_tokudb.h"
-<<<<<<< HEAD
-#include "partitioned_counter.h"
-=======
 #include "ha_tokupart.h"
 #include "hatoku_cmp.h"
 #include "partition_info.h"
 #include "partitioning/partition_base.h"
->>>>>>> Percona-Server-5.7.23-24
 #include "sql_db.h"
 #include "sql_parse.h"
 #include "sql_table.h"
@@ -45,12 +41,8 @@ Copyright (c) 2006, 2015, Percona and/or its affiliates. All rights reserved.
 
 pfs_key_t ha_tokudb_mutex_key;
 pfs_key_t num_DBs_lock_key;
-<<<<<<< HEAD
-HASH TOKUDB_SHARE::_open_tables;
-=======
 
 std::unordered_map<std::string, TOKUDB_SHARE*> TOKUDB_SHARE::_open_tables;
->>>>>>> Percona-Server-5.7.23-24
 tokudb::thread::mutex_t TOKUDB_SHARE::_open_tables_mutex;
 
 static const char* ha_tokudb_exts[] = {
