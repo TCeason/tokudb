@@ -556,7 +556,6 @@ fi
 if [ -e /etc/my.cnf ]; then
   MYCNF_PACKAGE=$(rpm -qi `rpm -qf /etc/my.cnf` | grep -m 1 Name | awk '{print $3}')
 fi
-<<<<<<< HEAD
 if [ "$MYCNF_PACKAGE" == "mariadb-libs" -o "$MYCNF_PACKAGE" == "mysql-libs" ]
 then
   cat > /tmp/my.cnf << EOL
@@ -584,15 +583,6 @@ EOL
   then
     rm -f /etc/my.cnf /tmp/my.cnf
   fi
-=======
-if [ "$MYCNF_PACKAGE" == "mariadb-libs" -o "$MYCNF_PACKAGE" == "mysql-libs" -o "$MYCNF_PACKAGE" == "Percona-Server-server-57" ]; then
-  MODIFIED=$(rpm -Va "$MYCNF_PACKAGE" | grep '/etc/my.cnf' | awk '{print $1}' | grep -c 5)
-  if [ "$MODIFIED" == 1 ]; then
-      cp /etc/my.cnf /etc/my.cnf.old
-  fi
-else
-  cp /etc/my.cnf /etc/my.cnf.old
->>>>>>> Percona-Server-5.7.23-24
 fi
 if [ ! -f /etc/my.cnf ]; then
   rm -rf /etc/my.cnf
@@ -742,16 +732,9 @@ fi
 %config(noreplace) %{_sysconfdir}/percona-server.cnf
 %config(noreplace) %{_sysconfdir}/percona-server.conf.d/mysqld.cnf
 %config(noreplace) %{_sysconfdir}/percona-server.conf.d/mysqld_safe.cnf
-<<<<<<< HEAD
 #%if 0%{?rhel} > 6
 #%config(noreplace) %{_sysconfdir}/my.cnf
 #%endif
-=======
-%if 0%{?rhel} > 6
-#%ghost %config(noreplace) %{_sysconfdir}/my.cnf
-%ghost %{_sysconfdir}/my.cnf
-%endif
->>>>>>> Percona-Server-5.7.23-24
 
 
 %attr(755, root, root) %{_bindir}/innochecksum
